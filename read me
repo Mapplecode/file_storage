@@ -1,0 +1,44 @@
+Pre requirements
+MYSQL DB , PYTHON , PYCHARM
+
+
+TO START THE PROJECT
+1) CREATE DATABASE FOR WEBAPP
+Make a new datebase ie file_storage
+
+2) CONNECT WEBAPP TO MYSQL
+In the webAppp(file_storage(joseph)) ------> DB_script.py
+Put in your mysql ,user ,password and DB NAME
+
+3) ENVIRONMENT (2 ways)
+* venv
+In the WEBAPP there is directory venv ,it is the enviroment which is used by python that is installed on your system
+the venv contains all the tools and libraries needed by python to run this project
+* requirements.txt
+It is the text file all python developer use if the venv is too big then we make a requirements file to which python can read
+and make a venv by reading the file.
+    to make new installments
+        pip install -r requirements.txt
+
+4) ACTIVATING ENVIRONMENT
+Using terminal we can write
+For windows
+        venv/scripts/activate.bat
+For Linux
+        ./venv/bin/activate
+*IF IT DOES NOT WORK PLEASE GO INSIDE THE DIRECTORY and activate the venv
+USING pycharm
+We can setup existing venv by going in setting --->interprator ---->add existing venv
+
+5)Start FLASK
+on your terminal please write
+    flask run
+
+it will start the project
+
+*TO START PROJECT ON DEVELOPER MODE please write
+WINDOWS
+set FLASK_ENV=development
+LINUX
+export FLASK_ENV=development
+ and star flask again from the command given above to run the APP (flask run)
