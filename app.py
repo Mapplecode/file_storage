@@ -66,15 +66,20 @@ def signup():
             param = request.args
         if request.method == 'POST':
             param = request.form
+        fname = param.get('fname')
+        lname = param.get('lname')
+        full_name = fname + " " +lname
         username= param.get('username')
         password=param.get('password')
         DB= database()
         dbsession = DB.session
         User = DB.classes.user
-        user = dbsession.query(User).filter(User.username == username).scalar()
-        print(user.username,user.password)
-        if user:
-            return redirect('/')
+        new_user = User(username=username,password=password,name=full_name)
+        dbsession.add(new_user)
+        dbsession.commit()
+        return redirect('/')
+
+
     except:
         return render_template('backend/auth-sign-up.html')
 
