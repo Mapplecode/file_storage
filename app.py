@@ -13,8 +13,8 @@ app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'file_storage'
 db = MySQL(app)
 SESSION_TYPE = 'redis'
-
-
+################
+################
 @app.route('/')
 def index():
     if session.get('username'):
