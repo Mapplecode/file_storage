@@ -20,3 +20,23 @@ var file = $(this).val();
         });
 
 })
+
+
+$('.inner_category').click(function(){
+var classes = $('.all_files');
+for(var i = 0; i < classes.length; i++)
+{
+   var in_element = classes[i].classList
+   var inner_class = in_element
+    var n = inner_class['value'].includes($(this).val())
+    if(n == false){
+    console.log(classes[i].id)
+    $('#'+classes[i].id).hide()
+    }
+    if(n == true){
+    console.log(classes[i].id)
+    $('#'+classes[i].id).show()
+    }
+}
+}
+)

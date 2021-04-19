@@ -7,26 +7,49 @@
       <title>CloudBOX | Responsive Bootstrap 4 Admin Dashboard Template</title>
       
       <!-- Favicon -->
-      <link rel="shortcut icon" href="../assets/images/favicon.ico" />
-      
-      <link rel="stylesheet" href="../assets/css/backend.min.css">
-      <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-      <link rel="stylesheet" href="../assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
-      <link rel="stylesheet" href="../assets/vendor/remixicon/fonts/remixicon.css">
-      
+
+
+    <!-- Favicon -->
+      <link rel="shortcut icon" href="{{ url_for('static', filename='assets/images/favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/file_upload.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/backend.min.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/remixicon/fonts/remixicon.css') }}">
+
+
       <!-- Viewer Plugin -->
         <!--PDF-->
-        <link rel="stylesheet" href="../assets/vendor/doc-viewer/include/pdf/pdf.viewer.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/doc-viewer/include/pdf/pdf.viewer.css') }}">
+
         <!--Docs-->
         <!--PPTX-->
-        <link rel="stylesheet" href="../assets/vendor/doc-viewer/include/PPTXjs/css/pptxjs.css">
-        <link rel="stylesheet" href="../assets/vendor/doc-viewer/include/PPTXjs/css/nv.d3.min.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/doc-viewer/include/PPTXjs/css/pptxjs.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/doc-viewer/include/PPTXjs/css/nv.d3.min.css') }}">
         <!--All Spreadsheet -->
-        <link rel="stylesheet" href="../assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.css') }}">
+
         <!--Image viewer-->
-        <link rel="stylesheet" href="../assets/vendor/doc-viewer/include/verySimpleImageViewer/css/jquery.verySimpleImageViewer.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/doc-viewer/include/verySimpleImageViewer/css/jquery.verySimpleImageViewer.css') }}">
+
         <!--officeToHtml-->
-        <link rel="stylesheet" href="../assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css">  </head>
+      <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css') }}">
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
+  </head>
   <body class="  ">
     <!-- loader Start -->
     <div id="loading">
@@ -36,12 +59,12 @@
     <!-- loader END -->
     <!-- Wrapper Start -->
     <div class="wrapper">
-      
+
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
               <a href="index.html" class="header-logo">
-                  <img src="../assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
-                  <img src="../assets/images/logo-white.png" class="img-fluid rounded-normal darkmode-logo" alt="logo">
+                  <img src="{{ url_for('static', filename='assets/images/logo.png') }}" class="img-fluid rounded-normal light-logo" alt="logo">
+                  <img src="{{ url_for('static', filename='assets/images/logo-white.png') }}" class="img-fluid rounded-normal darkmode-logo" alt="logo">
               </a>
               <div class="iq-menu-bt-sidebar">
                   <i class="las la-bars wrapper-menu"></i>
@@ -64,7 +87,7 @@
               <nav class="iq-sidebar-menu">
                   <ul id="iq-sidebar-toggle" class="iq-menu">
                        <li class=" ">
-                              <a href="../backend/index.html" class="">
+                              <a href="/" class="">
                                   <i class="las la-home iq-arrow-left"></i><span>Dashboard</span>
                               </a>
                           <ul id="dashboard" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
@@ -78,23 +101,23 @@
                           </a>
                           <ul id="mydrive" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                   <li class=" ">
-                                          <a href="../backend/page-alexa.html">
-                                              <i class="lab la-blogger-b"></i><span>Alexa Workshop</span>
+                                          <a href="/departments_cat">
+                                              <i class="lab la-blogger-b"></i><span>Departments</span>
                                           </a>
                                   </li>
                                   <li class=" ">
-                                          <a href="../backend/page-android.html">
-                                              <i class="las la-share-alt"></i><span>Android</span>
+                                          <a href="/user_manual_cat">
+                                              <i class="las la-share-alt"></i><span>User Manuals</span>
                                           </a>
                                   </li>
                                   <li class=" ">
-                                          <a href="../backend/page-brightspot.html">
-                                              <i class="las la-icons"></i><span>Brightspot</span>
+                                          <a href="/tribal_knowledge_cat">
+                                              <i class="las la-icons"></i><span>Tribal Knowledge</span>
                                           </a>
                                   </li>
-                                  <li class="active">
-                                          <a href="../backend/page-ionic.html">
-                                              <i class="las la-icons"></i><span>Ionic Chat App</span>
+                                  <li class=" ">
+                                          <a href="/qr_code_cat">
+                                              <i class="las la-icons"></i><span>QR Codes</span>
                                           </a>
                                   </li>
                           </ul>
@@ -391,17 +414,17 @@
               <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                   <i class="ri-menu-line wrapper-menu"></i>
                   <a href="index.html" class="header-logo">
-                      <img src="../assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
-                      <img src="../assets/images/logo-white.png" class="img-fluid rounded-normal darkmode-logo" alt="logo">
+                      <img src="{{ url_for('static', filename='assets/images/logo.png') }}" class="img-fluid rounded-normal light-logo" alt="logo">
+                      <img src="{{ url_for('static', filename='assets/images/logo-white.png') }}" class="img-fluid rounded-normal darkmode-logo" alt="logo">
                   </a>
               </div>
                   <div class="iq-search-bar device-search">
-                      
+
                       <form>
                           <div class="input-prepend input-append">
                               <div class="btn-group">
                                   <label class="dropdown-toggle searchbox" data-toggle="dropdown">
-                                  <input class="dropdown-toggle search-query text search-input" type="text"  placeholder="Type here to search..."><span class="search-replace"></span>
+                                  <input class="dropdown-toggle search-query text search-input"  type="text"  placeholder="Type here to search..."><span class="search-replace"></span>
                                   <a class="search-link" href="#"><i class="ri-search-line"></i></a>
                                   <span class="caret"><!--icon--></span>
                                   </label>
@@ -417,7 +440,7 @@
                           </div>
                       </form>
                   </div>
-      
+
                   <div class="d-flex align-items-center">
                       <div class="change-mode">
                           <div class="custom-control custom-switch custom-switch-icon custom-control-inline">
@@ -444,11 +467,11 @@
                                   <form action="#" class="searchbox p-2">
                                       <div class="form-group mb-0 position-relative">
                                       <input type="text" class="text search-input font-size-12" placeholder="type here to search...">
-                                      <a href="#" class="search-link"><i class="las la-search"></i></a> 
+                                      <a href="#" class="search-link"><i class="las la-search"></i></a>
                                       </div>
                                   </form>
                               </div>
-                          </li> 
+                          </li>
                           <li class="nav-item nav-icon dropdown">
                               <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <i class="ri-question-line"></i>
@@ -467,7 +490,7 @@
                                   </div>
                               </div>
                           </li>
-                          <li class="nav-item nav-icon dropdown"> 
+                          <li class="nav-item nav-icon dropdown">
                               <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                               <i class="ri-settings-3-line"></i>
                               </a>
@@ -478,7 +501,7 @@
                                               <a href="#" class="iq-sub-card pt-0"><i class="ri-settings-3-line"></i> Settings</a>
                                               <a href="#" class="iq-sub-card"><i class="ri-hard-drive-line"></i> Get Drive for desktop</a>
                                               <a href="#" class="iq-sub-card"><i class="ri-keyboard-line"></i> Keyboard Shortcuts</a>
-                                          </div>                                
+                                          </div>
                                       </div>
                                   </div>
                               </div>
@@ -499,16 +522,16 @@
                                           <div class="profile-header">
                                               <div class="cover-container text-center">
                                                   <div class="rounded-circle profile-icon bg-primary mx-auto d-block">
-                                                      P                                                    
+                                                      P
                                                       <a href="">
-                                                          
+
                                                       </a>
                                                   </div>
                                                   <div class="profile-detail mt-3">
-                                                  <h5><a href="../app/user-profile-edit.html">Panny Marco</a></h5>
-                                                  <p>pannymarco@gmail.com</p>
+                                                  <h5><a href="../app/user-profile-edit.html">{{session.get('name')}}</a></h5>
+                                                  <p>{{session.get('username')}}</p>
                                                   </div>
-                                                  <a href="auth-sign-in.html" class="btn btn-primary">Sign Out</a>
+                                                  <a href="/logout" class="btn btn-primary">Sign Out</a>
                                               </div>
                                               <div class="profile-details mt-4 pt-4 border-top">
                                                   <div class="media align-items-center mb-3">
@@ -521,7 +544,7 @@
                                                               <p class="mb-0 font-size-12"><i>Signed Out</i></p>
                                                           </div>
                                                           <p class="mb-0 font-size-12">annamull@gmail.com</p>
-                                                      </div>                                                 
+                                                      </div>
                                                   </div>
                                                   <div class="media align-items-center mb-3">
                                                       <div class="rounded-circle iq-card-icon-small bg-success">
@@ -553,8 +576,8 @@
                                   </div>
                               </div>
                           </li>
-                          </ul>                     
-                      </div> 
+                          </ul>
+                      </div>
                   </div>
               </nav>
           </div>
@@ -568,7 +591,7 @@
                            <nav aria-label="breadcrumb">
                               <ul class="breadcrumb">
                                  <li class="breadcrumb-item"><a href="index.html">My Drive</a></li>
-                                 <li class="breadcrumb-item active" aria-current="page">Iconic Chat App</li>
+                                 <li class="breadcrumb-item active" aria-current="page">Alexa Workshop</li>
                               </ul>
                            </nav>
                         </div>
@@ -595,9 +618,9 @@
                                         <li>
                                             <a href="#" data-toggle="tooltip" data-placement="right" title="Tasks"><i
                                                     class="las la-tasks iq-arrow-left"></i></a>
-                                        </li>                                        
+                                        </li>
                                     </ul>
-                                 </div>
+                                </div>
                             </div>
                         </div>
                      </div>
@@ -609,124 +632,100 @@
                         <div class="card card-block card-stretch card-transparent">
                             <div class="card-header d-flex justify-content-between pb-0">
                                 <div class="header-title">
-                                    <h4 class="card-title">Images</h4>
+                                    <h4 class="card-title">Uploader</h4>
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height ">
-                            <div class="card-body image-thumb ">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <a class="image-popup-vertical-fit" href="../assets/images/layouts/page-4/01.png">
-                                        <img src="../assets/images/layouts/page-4/01.png" class="img-fluid" alt="images" />  
-                                        <div class="iq-image-overlay"></div>
-                                    </a>           
-                                </div>
-                                <h6>Books.jpeg</h6>          
-                            </div>
-                        </div>
+                    <div class="col-lg-12">
+
+        <form method="post" action="/file_upload" id="#" enctype="multipart/form-data">
+                    <input hidden value="{{cat_name}}" name="category">
+              <div class="form-group files color">
+                <input type="file" id='file_store' name='file' style="height:250px" class="form-control" multiple="">
+              </div>
+
+            <div class="col-sm-12 row mb-5">
+            <label class="mr-4" for="tag"> Folder :  </label>
+            <select id='tag' name="tag" class=" form-select col-sm-3">
+                <option value="Collections">Collections</option><option value="Water">Water</option>
+                <option value="Police">Police</option><option value="Streets">Streets</option>
+                <option value="Refuse">Refuse</option><option value="Fleet">Fleet</option>
+            </select>
+                    <button type="submit" class="btn btn-success ml-4">Upload file(s)</button>
+            </div>
+          </form>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <a class="image-popup-vertical-fit" href="../assets/images/layouts/page-4/02.png">
-                                        <img src="../assets/images/layouts/page-4/02.png" class="img-fluid" alt="images" />  
-                                        <div class="iq-image-overlay"></div>
-                                    </a>           
-                                </div>
-                                <h6>PHP.png</h6>          
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <a class="image-popup-vertical-fit" href="../assets/images/layouts/page-4/03.png">
-                                        <img src="../assets/images/layouts/page-4/03.png" class="img-fluid" alt="images" />  
-                                        <div class="iq-image-overlay"></div>
-                                    </a>           
-                                </div>
-                                <h6>Box.svg</h6>        
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <a class="image-popup-vertical-fit" href="../assets/images/layouts/page-4/04.png">
-                                        <img src="../assets/images/layouts/page-4/04.png" class="img-fluid" alt="images" />  
-                                        <div class="iq-image-overlay"></div>
-                                        <div class="overlay-img-icon">
-                                            <i class="las la-play-circle"></i>
-                                        </div> 
-                                    </a>           
-                                </div>
-                                <h6>backup.mp4</h6>            
-                            </div>
-                        </div>
-                    </div>              
                     <div class="col-lg-12">
                         <div class="card card-block card-stretch card-transparent">
                             <div class="card-header d-flex justify-content-between pb-0">
                                 <div class="header-title">
-                                    <h4 class="card-title">Documents</h4>
+                                    <h4 class="card-title">Folders</h4>
+                                </div>
+                                <div>
+                                    <button type="button" id='collections_btn' value="collections" class="btn btn-info inner_category">Collections</button>
+                                    <button type="button" id='water_btn' value="water" class="btn btn-primary inner_category">Water</button>
+                                    <button type="button" id='police_btn' value="police" class="btn btn-warning inner_category">Police</button>
+                                    <button type="button" id='street_btn' value="street" class="btn btn-secondary inner_category">Streets</button>
+                                    <button type="button" id='refuse_btn' value="refuse" class="btn btn-danger inner_category">Refuse</button>
+                                    <button type="button" id='fleet_btn' value="fleet" class="btn btn-dark inner_category">Fleet</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#"  data-title="plugins.pdf" data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="alexa5.pdf"><img src="../assets/images/layouts/page-4/pdf.png" class="img-fluid" alt="image1"></a>         
-                                </div>
-                                <h6>Books.pdf</h6>            
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#" data-title="B2B.docx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal"><img src="../assets/images/layouts/page-4/doc.png" class="img-fluid" alt="image1"></a>
-                                </div>
-                                <h6>Media.docx</h6>     
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#" data-title="Codes.xlsx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal"><img src="../assets/images/layouts/page-4/xlsx.png" class="img-fluid" alt="image1"></a>
-                                </div>
-                                <h6>Flavours.xlsx</h6> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#" data-title="Covid-19.pptx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.pptx" data-toggle="modal" data-target="#exampleModal"><img src="../assets/images/layouts/page-4/ppt.png" class="img-fluid" alt="image1"></a>           
-                                </div>
-                                <h6>Company.pptx</h6>          
-                            </div>
-                        </div>
-                    </div>
+                    {% for files in image_list %}
+                    {{files|safe}}
+                    {% endfor %}
+<!--                    <div class="col-lg-3 col-md-6 col-sm-6">-->
+<!--                        <div class="card card-block card-stretch card-height">-->
+<!--                            <div class="card-body image-thumb">-->
+<!--                                <div class="mb-4 text-center p-3 rounded iq-thumb">-->
+<!--                                    <div class="iq-image-overlay"></div>-->
+<!--                                    <a href="#" data-title="Mobile-plan.pdf" data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="alexa5.pdf"><img src="{{ url_for('static', filename='assets/images/layouts/page-1/pdf.png') }}" class="img-fluid" alt="image1"></a>-->
+<!--                                </div>-->
+<!--                                <h6>Mobile-plan.pdf</h6>            -->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-3 col-md-6 col-sm-6">-->
+<!--                        <div class="card card-block card-stretch card-height">-->
+<!--                            <div class="card-body image-thumb">-->
+<!--                                <div class="mb-4 text-center p-3 rounded iq-thumb">-->
+<!--                                    <div class="iq-image-overlay"></div>-->
+<!--                                    <a href="#" data-title="Strategy.docx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal"><img src="{{ url_for('static', filename='assets/images/layouts/page-1/doc.png') }}" class="img-fluid" alt="image1"></a>-->
+<!--                                </div>-->
+<!--                                <h6>Strategy.docx</h6>     -->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-3 col-md-6 col-sm-6">-->
+<!--                        <div class="card card-block card-stretch card-height">-->
+<!--                            <div class="card-body image-thumb">-->
+<!--                                <div class="mb-4 text-center p-3 rounded iq-thumb">-->
+<!--                                    <div class="iq-image-overlay"></div>-->
+<!--                                    <a href="#" data-title="Web.xlsx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal"><img src="{{ url_for('static', filename='assets/images/layouts/page-1/xlsx.png') }}" class="img-fluid" alt="image1"></a>-->
+<!--                                </div>-->
+<!--                                <h6>Web.xlsx</h6> -->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-3 col-md-6 col-sm-6">-->
+<!--                        <div class="card card-block card-stretch card-height">-->
+<!--                            <div class="card-body image-thumb">-->
+<!--                                <div class="mb-4 text-center p-3 rounded iq-thumb">-->
+<!--                                    <div class="iq-image-overlay"></div>-->
+<!--                                    <a href="#" data-title="Testing.pptx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.pptx" data-toggle="modal" data-target="#exampleModal"><img src="{{ url_for('static', filename='assets/images/layouts/page-1/ppt.png') }}" class="img-fluid" alt="image1"></a>-->
+<!--                                </div>-->
+<!--                                <h6>Testing.pptx</h6>          -->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
             <div class="icon icon-grid i-list">
                 <div class="row">
-                    <div class="col-lg-12">                        
+                    <div class="col-lg-12">
                         <div class="card card-block card-stretch card-transparent">
                             <div class="card-header d-flex justify-content-between pb-0">
                                 <div class="header-title">
@@ -754,7 +753,7 @@
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="mr-3">
-                                                        <a href="#"><img src="../assets/images/layouts/page-4/01.png" class="img-fluid avatar-30" alt="image1"></a>
+                                                        <a href="#"><img src="{{ url_for('static', filename='assets/images/layouts/page-1/01.png') }}" class="img-fluid avatar-30" alt="image1"></a>
                                                     </div>
                                                     Alexa.jpeg
                                                 </div>
@@ -781,7 +780,7 @@
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="mr-3">
-                                                        <a href="#"><img src="../assets/images/layouts/page-4/02.png" class="img-fluid avatar-30" alt="image1"></a>
+                                                        <a href="#"><img src="{{ url_for('static', filename='assets/images/layouts/page-1/02.png') }}" class="img-fluid avatar-30" alt="image1"></a>
                                                     </div>
                                                     Alexa2.png
                                                 </div>
@@ -808,7 +807,7 @@
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="mr-3">
-                                                        <a href="#"><img src="../assets/images/layouts/page-4/03.png" class="img-fluid avatar-30" alt="image1"></a>
+                                                        <a href="#"><img src="{{ url_for('static', filename='assets/images/layouts/page-1/03.png') }}." class="img-fluid avatar-30" alt="image1"></a>
                                                     </div>
                                                     Alexa3.svg
                                                 </div>
@@ -835,9 +834,9 @@
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="mr-3">
-                                                        <a href="#"><img src="../assets/images/layouts/page-4/04.png" class="img-fluid avatar-30" alt="image1"></a>
+                                                        <a href="#"><img src="{{ url_for('static', filename='assets/images/layouts/page-1/04.png') }}" class="img-fluid avatar-30" alt="image1"></a>
                                                     </div>
-                                                    Alexa4.eps
+                                                    Alexa Video.mp4
                                                 </div>
                                             </td>
                                             <td>Me</td>
@@ -862,9 +861,9 @@
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="mr-3">
-                                                        <a href="#"><img src="../assets/images/layouts/page-4/pdf.png" class="img-fluid avatar-30" alt="image1"></a>
+                                                        <a href="#"><img src="{{ url_for('static', filename='assets/images/layouts/page-4/pdf.png') }}" class="img-fluid avatar-30" alt="image1"></a>
                                                     </div>
-                                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="alexa5.pdf" style="cursor: pointer;">Alexa5.pdf</div>
+                                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="{{ url_for('static', filename='assets/vendor/doc-viewer/files/demo.pdf') }}" data-toggle="modal" data-target="#exampleModal" data-title="alexa5.pdf" style="cursor: pointer;">Alexa5.pdf</div>
                                                 </div>
                                             </td>
                                             <td>Me</td>
@@ -889,7 +888,7 @@
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="mr-3">
-                                                        <a href="#"><img src="../assets/images/layouts/page-4/doc.png" class="img-fluid avatar-30" alt="image1"></a>
+                                                        <a href="#"><img src="{{ url_for('static', filename='assets/js/customizer.js') }}../assets/images/layouts/page-4/doc.png" class="img-fluid avatar-30" alt="image1"></a>
                                                     </div>
                                                     <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="alexa6.docx" style="cursor: pointer;">Alexa6.docx</div>
                                                 </div>
@@ -916,7 +915,7 @@
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="mr-3">
-                                                        <a href="#"><img src="../assets/images/layouts/page-4/xlsx.png" class="img-fluid avatar-30" alt="image1"></a>
+                                                        <a href="#"><img src="{{ url_for('static', filename='assets/js/customizer.js') }}../assets/images/layouts/page-4/xlsx.png" class="img-fluid avatar-30" alt="image1"></a>
                                                     </div>
                                                     <div data-title="Alexa8.xlsx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">Alexa8.xlsx</div>
                                                 </div>
@@ -943,7 +942,7 @@
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="mr-3">
-                                                        <a href="#"><img src="../assets/images/layouts/page-4/ppt.png" class="img-fluid avatar-30" alt="image1"></a>
+                                                        <a href="#"><img src="{{ url_for('static', filename='assets/js/customizer.js') }}../assets/images/layouts/page-4/ppt.png" class="img-fluid avatar-30" alt="image1"></a>
                                                     </div>
                                                     <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="../assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="alexa7.pptx" style="cursor: pointer;">Alexa7.pptx</div>
                                                 </div>
@@ -994,35 +993,40 @@
         </div>
     </footer>
     <!-- Backend Bundle JavaScript -->
-    <script src="../assets/js/backend-bundle.min.js"></script>
-    
+  <!-- Backend Bundle JavaScript -->
+    <script src="{{ url_for('static', filename='assets/js/backend-bundle.min.js') }}"></script>
+
     <!-- Chart Custom JavaScript -->
-    <script src="../assets/js/customizer.js"></script>
-    
+    <script src="{{ url_for('static', filename='assets/js/customizer.js') }}"></script>
+
     <!-- Chart Custom JavaScript -->
-    <script src="../assets/js/chart-custom.js"></script>
-    
+
+    <script src="{{ url_for('static', filename='assets/js/chart-custom.js') }}"></script>
     <!--PDF-->
-    <script src="../assets/vendor/doc-viewer/include/pdf/pdf.js"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/pdf/pdf.js') }}"></script>
     <!--Docs-->
-    <script src="../assets/vendor/doc-viewer/include/docx/jszip-utils.js"></script>
-    <script src="../assets/vendor/doc-viewer/include/docx/mammoth.browser.min.js"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/docx/jszip-utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/docx/mammoth.browser.min.js') }}"></script>
     <!--PPTX-->
-    <script src="../assets/vendor/doc-viewer/include/PPTXjs/js/filereader.js"></script>
-    <script src="../assets/vendor/doc-viewer/include/PPTXjs/js/d3.min.js"></script>
-    <script src="../assets/vendor/doc-viewer/include/PPTXjs/js/nv.d3.min.js"></script>
-    <script src="../assets/vendor/doc-viewer/include/PPTXjs/js/pptxjs.js"></script>
-    <script src="../assets/vendor/doc-viewer/include/PPTXjs/js/divs2slides.js"></script>
-    <!--All Spreadsheet -->
-    <script src="../assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.js"></script>
-    <script src="../assets/vendor/doc-viewer/include/SheetJS/xlsx.full.min.js"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/PPTXjs/js/filereader.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/PPTXjs/js/d3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/PPTXjs/js/nv.d3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/PPTXjs/js/pptxjs.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/PPTXjs/js/divs2slides.js') }}"></script>
+      <!--All Spreadsheet -->
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/SheetJS/xlsx.full.min.js') }}"></script>
+
     <!--Image viewer-->
-    <script src="../assets/vendor/doc-viewer/include/verySimpleImageViewer/js/jquery.verySimpleImageViewer.js"></script>
-    <!--officeToHtml-->
-    <script src="../assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.js"></script>
-    <script src="../assets/js/doc-viewer.js"></script>
-    <!-- app JavaScript -->
-    <script src="../assets/js/app.js"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/verySimpleImageViewer/js/jquery.verySimpleImageViewer.js') }}"></script>
+ <!--officeToHtml-->
+     <!--officeToHtml-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" />
+    <script src="{{ url_for('static', filename='assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/doc-viewer.js') }}"></script>
+  <!-- app JavaScript -->
+  <script src="{{ url_for('static', filename='assets/js/app.js') }}"></script>
      <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -1043,5 +1047,6 @@
             </div>
         </div>
     </div>
+  <script src="{{ url_for('static', filename='assets/js/file_storage.js') }}"></script>
   </body>
 </html>

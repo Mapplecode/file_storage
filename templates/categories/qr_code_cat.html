@@ -59,7 +59,7 @@ function drop(ev) {
     <!-- loader END -->
     <!-- Wrapper Start -->
     <div class="wrapper">
-      
+
       <div class="iq-sidebar  sidebar-default ">
           <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
               <a href="index.html" class="header-logo">
@@ -100,24 +100,24 @@ function drop(ev) {
                               <i class="las la-angle-down iq-arrow-right arrow-hover"></i>
                           </a>
                           <ul id="mydrive" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                                  <li class="active">
-                                          <a href="../backend/page-alexa.html">
-                                              <i class="lab la-blogger-b"></i><span>Alexa Workshop</span>
+                                  <li class=" ">
+                                          <a href="/departments_cat">
+                                              <i class="lab la-blogger-b"></i><span>Departments</span>
                                           </a>
                                   </li>
                                   <li class=" ">
-                                          <a href="../backend/page-android.html">
-                                              <i class="las la-share-alt"></i><span>Android</span>
+                                          <a href="/user_manual_cat">
+                                              <i class="las la-share-alt"></i><span>User Manuals</span>
                                           </a>
                                   </li>
                                   <li class=" ">
-                                          <a href="../backend/page-brightspot.html">
-                                              <i class="las la-icons"></i><span>Brightspot</span>
+                                          <a href="/tribal_knowledge_cat">
+                                              <i class="las la-icons"></i><span>Tribal Knowledge</span>
                                           </a>
                                   </li>
                                   <li class=" ">
-                                          <a href="../backend/page-ionic.html">
-                                              <i class="las la-icons"></i><span>Ionic Chat App</span>
+                                          <a href="/qr_code_cat">
+                                              <i class="las la-icons"></i><span>QR Codes</span>
                                           </a>
                                   </li>
                           </ul>
@@ -419,7 +419,7 @@ function drop(ev) {
                   </a>
               </div>
                   <div class="iq-search-bar device-search">
-                      
+
                       <form>
                           <div class="input-prepend input-append">
                               <div class="btn-group">
@@ -440,7 +440,7 @@ function drop(ev) {
                           </div>
                       </form>
                   </div>
-      
+
                   <div class="d-flex align-items-center">
                       <div class="change-mode">
                           <div class="custom-control custom-switch custom-switch-icon custom-control-inline">
@@ -467,11 +467,11 @@ function drop(ev) {
                                   <form action="#" class="searchbox p-2">
                                       <div class="form-group mb-0 position-relative">
                                       <input type="text" class="text search-input font-size-12" placeholder="type here to search...">
-                                      <a href="#" class="search-link"><i class="las la-search"></i></a> 
+                                      <a href="#" class="search-link"><i class="las la-search"></i></a>
                                       </div>
                                   </form>
                               </div>
-                          </li> 
+                          </li>
                           <li class="nav-item nav-icon dropdown">
                               <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <i class="ri-question-line"></i>
@@ -490,7 +490,7 @@ function drop(ev) {
                                   </div>
                               </div>
                           </li>
-                          <li class="nav-item nav-icon dropdown"> 
+                          <li class="nav-item nav-icon dropdown">
                               <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                               <i class="ri-settings-3-line"></i>
                               </a>
@@ -501,7 +501,7 @@ function drop(ev) {
                                               <a href="#" class="iq-sub-card pt-0"><i class="ri-settings-3-line"></i> Settings</a>
                                               <a href="#" class="iq-sub-card"><i class="ri-hard-drive-line"></i> Get Drive for desktop</a>
                                               <a href="#" class="iq-sub-card"><i class="ri-keyboard-line"></i> Keyboard Shortcuts</a>
-                                          </div>                                
+                                          </div>
                                       </div>
                                   </div>
                               </div>
@@ -522,9 +522,9 @@ function drop(ev) {
                                           <div class="profile-header">
                                               <div class="cover-container text-center">
                                                   <div class="rounded-circle profile-icon bg-primary mx-auto d-block">
-                                                      P                                                    
+                                                      P
                                                       <a href="">
-                                                          
+
                                                       </a>
                                                   </div>
                                                   <div class="profile-detail mt-3">
@@ -544,7 +544,7 @@ function drop(ev) {
                                                               <p class="mb-0 font-size-12"><i>Signed Out</i></p>
                                                           </div>
                                                           <p class="mb-0 font-size-12">annamull@gmail.com</p>
-                                                      </div>                                                 
+                                                      </div>
                                                   </div>
                                                   <div class="media align-items-center mb-3">
                                                       <div class="rounded-circle iq-card-icon-small bg-success">
@@ -576,8 +576,8 @@ function drop(ev) {
                                   </div>
                               </div>
                           </li>
-                          </ul>                     
-                      </div> 
+                          </ul>
+                      </div>
                   </div>
               </nav>
           </div>
@@ -618,7 +618,7 @@ function drop(ev) {
                                         <li>
                                             <a href="#" data-toggle="tooltip" data-placement="right" title="Tasks"><i
                                                     class="las la-tasks iq-arrow-left"></i></a>
-                                        </li>                                        
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -639,21 +639,37 @@ function drop(ev) {
                         </div>
                     </div>
                     <div class="col-lg-12">
-<form method="post" action="/file_upload" id="#" enctype="multipart/form-data">
 
+        <form method="post" action="/file_upload" id="#" enctype="multipart/form-data">
+                    <input hidden value="{{cat_name}}" name="category">
               <div class="form-group files color">
-
-                <input type="file" id='file_store' name='file'style="height:250px" class="form-control" multiple="">
+                <input type="file" id='file_store' name='file' style="height:250px" class="form-control" multiple="">
               </div>
-<button type="submit" class="btn btn-success">Upload file(s)</button>
 
+            <div class="col-sm-12 row mb-5">
+            <label class="mr-4" for="tag"> Folder :  </label>
+            <select id='tag' name="tag" class=" form-select col-sm-3">
+                <option value="Collections">Collections</option><option value="Water">Water</option>
+                <option value="Police">Police</option><option value="Streets">Streets</option>
+                <option value="Refuse">Refuse</option><option value="Fleet">Fleet</option>
+            </select>
+                    <button type="submit" class="btn btn-success ml-4">Upload file(s)</button>
+            </div>
           </form>
-                    </div>              
+                    </div>
                     <div class="col-lg-12">
                         <div class="card card-block card-stretch card-transparent">
                             <div class="card-header d-flex justify-content-between pb-0">
                                 <div class="header-title">
-                                    <h4 class="card-title">Documents</h4>
+                                    <h4 class="card-title">Folders</h4>
+                                </div>
+                                <div>
+                                    <button type="button" id='collections_btn' value="collections" class="btn btn-info inner_category">Collections</button>
+                                    <button type="button" id='water_btn' value="water" class="btn btn-primary inner_category">Water</button>
+                                    <button type="button" id='police_btn' value="police" class="btn btn-warning inner_category">Police</button>
+                                    <button type="button" id='street_btn' value="street" class="btn btn-secondary inner_category">Streets</button>
+                                    <button type="button" id='refuse_btn' value="refuse" class="btn btn-danger inner_category">Refuse</button>
+                                    <button type="button" id='fleet_btn' value="fleet" class="btn btn-dark inner_category">Fleet</button>
                                 </div>
                             </div>
                         </div>
@@ -709,7 +725,7 @@ function drop(ev) {
             </div>
             <div class="icon icon-grid i-list">
                 <div class="row">
-                    <div class="col-lg-12">                        
+                    <div class="col-lg-12">
                         <div class="card card-block card-stretch card-transparent">
                             <div class="card-header d-flex justify-content-between pb-0">
                                 <div class="header-title">
