@@ -160,28 +160,28 @@ def login():
 
 @app.route('/signup',methods=['GET','POST'])
 def signup():
-    # try:
-    param = ''
-    if request.method == 'GET':
-        param = request.args
-    if request.method == 'POST':
-        param = request.form
-    fname = param.get('fname')
-    lname = param.get('lname')
-    full_name = fname + " " +lname
-    username= param.get('username')
-    password=param.get('password')
-    DB= database()
-    dbsession = DB.session
-    User = DB.classes.user
-    new_user = User(username=username,password=password,name=full_name)
-    dbsession.add(new_user)
-    dbsession.commit()
-    return redirect('/')
+    try:
+        param = ''
+        if request.method == 'GET':
+            param = request.args
+        if request.method == 'POST':
+            param = request.form
+        fname = param.get('fname')
+        lname = param.get('lname')
+        full_name = fname + " " +lname
+        username= param.get('username')
+        password=param.get('password')
+        DB= database()
+        dbsession = DB.session
+        User = DB.classes.user
+        new_user = User(username=username,password=password,name=full_name)
+        dbsession.add(new_user)
+        dbsession.commit()
+        return redirect('/')
 
 
-    # except:
-    #     return render_template('backend/auth-sign-up.html')
+    except:
+        return render_template('backend/auth-sign-up.html')
 
 @app.route('/logout',methods=['GET','POST'])
 def logout():
