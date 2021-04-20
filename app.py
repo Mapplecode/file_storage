@@ -141,6 +141,7 @@ def login():
             param = request.form
         username= param.get('username')
         password=param.get('password')
+
         dbsession = db.session
         User = db.classes.user
         user = dbsession.query(User).filter(User.username == username).scalar()
@@ -170,6 +171,7 @@ def signup():
         full_name = fname + " " +lname
         username= param.get('username')
         password=param.get('password')
+
         dbsession = db.session
         User = db.classes.user
         new_user = User(username=username,password=password,name=full_name)
