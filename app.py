@@ -148,7 +148,7 @@ def login():
                 if user.password == password:
                     session['username'] = username
                     session['name'] = username
-                    session['user_id'] = '1'
+                    session['user_id'] = user.id
                     return redirect('/')
         else:
             return render_template('backend/auth-sign-in.html')
