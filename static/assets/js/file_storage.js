@@ -36,7 +36,7 @@ for(var i = 0; i < classes.length; i++)
     if(n == true){
     console.log(classes[i].id)
     $('#'+classes[i].id).show()
-    $('#'+classes[i].id).css('display','block')
+    $('#'+classes[i].id).css('display','block !important')
     }
 }
 }
