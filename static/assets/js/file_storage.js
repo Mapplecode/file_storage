@@ -31,7 +31,7 @@ for(var i = 0; i < classes.length; i++)
     var n = inner_class['value'].includes($(this).val())
     if(n == false){
     console.log(classes[i].id)
-    $('#'+classes[i].id).hide()
+    $('#'+classes[i].id).css('display','none')
     }
     if(n == true){
     console.log(classes[i].id)
