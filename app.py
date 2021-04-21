@@ -160,23 +160,22 @@ def login():
 def signup():
     # try:
         param = ''
-        if request.method == 'GET':
-            param = request.args
         if request.method == 'POST':
             param = request.form
-        fname = param.get('fname')
-        lname = param.get('lname')
-        full_name = fname + " " +lname
-        username= param.get('username')
-        password=param.get('password')
-        DB= database()
-        dbsession = DB.session
-        User = DB.classes.user
-        new_user = User(username=username,password=password,name=full_name)
-        dbsession.add(new_user)
-        dbsession.commit()
-        return redirect('/')
-
+            fname = param.get('fname')
+            lname = param.get('lname')
+            full_name = fname + " " +lname
+            username= param.get('username')
+            password=param.get('password')
+            DB= database()
+            dbsession = DB.session
+            User = DB.classes.user
+            new_user = User(username=username,password=password,name=full_name)
+            dbsession.add(new_user)
+            dbsession.commit()
+            return redirect('/')
+        else:
+            return render_template('backend/auth-sign-up.html')
     # except:
     #     return render_template('backend/auth-sign-up.html')
 
