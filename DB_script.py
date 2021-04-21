@@ -5,7 +5,7 @@ class DB(object):
     def __init__(self):
         dbhost = 'localhost'
         dbuser = 'root'
-        dbpass = 'password'
+        dbpass = 'Password@1'
         dbname = 'file_storage'
 
         url = 'mysql+pymysql://{}:{}@{}/{}?charset=utf8'.format(

@@ -158,7 +158,7 @@ def login():
 
 @app.route('/signup',methods=['GET','POST'])
 def signup():
-    try:
+    # try:
         param = ''
         if request.method == 'GET':
             param = request.args
@@ -169,17 +169,16 @@ def signup():
         full_name = fname + " " +lname
         username= param.get('username')
         password=param.get('password')
-
-        dbsession = db.session
-        User = db.classes.user
+        DB= database()
+        dbsession = DB.session
+        User = DB.classes.user
         new_user = User(username=username,password=password,name=full_name)
         dbsession.add(new_user)
         dbsession.commit()
         return redirect('/')
 
-
-    except:
-        return render_template('backend/auth-sign-up.html')
+    # except:
+    #     return render_template('backend/auth-sign-up.html')
 
 @app.route('/logout',methods=['GET','POST'])
 def logout():
