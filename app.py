@@ -3,14 +3,15 @@ from werkzeug.utils import secure_filename
 from flask_mysqldb import MySQL
 from DB_script import DB as database
 import os
+from dataBase_info import db_info
 import filetype
 from make_files_ext import add_a_tag
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '12345#'
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
-app.config['MYSQL_DB'] = 'file_storage'
+app.config['SECRET_KEY'] = db_info['SECRET_KEY']
+app.config['MYSQL_HOST'] = db_info['MYSQL_HOST']
+app.config['MYSQL_USER'] = db_info['MYSQL_USER']
+app.config['MYSQL_PASSWORD'] = db_info['MYSQL_PASSWORD']
+app.config['MYSQL_DB'] = db_info['MYSQL_DB']
 db = MySQL(app)
 SESSION_TYPE = 'redis'
 ################
