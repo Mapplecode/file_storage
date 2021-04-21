@@ -140,16 +140,16 @@ def login():
             param = request.form
             username= param.get('username')
             password=param.get('password')
-
-            # dbsession = db.session
-            # User = db.classes.user
-            # user = dbsession.query(User).filter(User.username == username).scalar()
-            # if user:
-            #     if user.password == password:
-            session['username'] = username
-            session['name'] = username
-            session['user_id'] = '1'
-            return redirect('/')
+            DB= database()
+            dbsession = DB.session
+            User = DB.classes.user
+            user = dbsession.query(User).filter(User.username == username).scalar()
+            if user:
+                if user.password == password:
+                    session['username'] = username
+                    session['name'] = username
+                    session['user_id'] = '1'
+                    return redirect('/')
         else:
             return render_template('backend/auth-sign-in.html')
 
