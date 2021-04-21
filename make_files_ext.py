@@ -22,7 +22,7 @@ def add_a_tag(link,name,cat,count):
     if filetype.is_archive(link):
         str_is = '''
 
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div id = "'''+count +'''" class="col-lg-3 col-md-6 col-sm-6 all_files '''+cat+''''">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body image-thumb">
                                 <div class="mb-4 text-center p-3 rounded iq-thumb">
@@ -35,11 +35,11 @@ def add_a_tag(link,name,cat,count):
                             </div>
                         </div>
                     </div>
-            '''.format(link, link, name,link)
+            '''.format(link, link,link, name,link)
     if '.csv' in name or '.xlsx' in name:
         str_is = '''
 
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div id = "'''+count +'''" class="col-lg-3 col-md-6 col-sm-6 all_files '''+cat+''''">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body image-thumb">
                                 <div class="mb-4 text-center p-3 rounded iq-thumb">
@@ -54,7 +54,7 @@ def add_a_tag(link,name,cat,count):
                             </div>
                         </div>
                     </div>
-            '''.format(link, link, name,link)
+            '''.format(link, link,link, name,link)
 
 
     return str_is
