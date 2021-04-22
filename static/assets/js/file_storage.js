@@ -24,20 +24,25 @@ var file = $(this).val();
 
 $('.inner_category').click(function(){
 var classes = $('.all_files');
-for(var i = 0; i < classes.length; i++)
-{
-   var in_element = classes[i].classList
-   var inner_class = in_element
-    var n = inner_class['value'].includes($(this).val())
-    if(n == false){
-    $('#'+classes[i].id).css('display','none')
-    }
-    if(n == true){
-    console.log(classes[i].id)
-    var show_it = classes[i].id
-    $('#'+show_it).css('display','block')
-    document.getElementById(classes[i].id.style.display = "block";
-    }
-}
+$('.all_files').css('display','none');
+var value_of_btn = $(this).val();
+$('.'+value_of_btn).css('display','block');
+
+
+//for(var i = 0; i < classes.length; i++)
+//{
+//   var in_element = classes[i].classList
+//   var inner_class = in_element
+//    var n = inner_class['value'].includes($(this).val())
+//    if(n == false){
+//    console.log('not exist '+ classes[i].id)
+//    $('#'+classes[i].id).css('display','none')
+//    }
+//    if(n == true){
+//    console.log('exist '+classes[i].id)
+//    $('#'+classes[i].id).show()
+//    $('#'+classes[i].id).css('display','block !important')
+//    }
+//}
 }
 )
