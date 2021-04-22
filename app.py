@@ -150,6 +150,8 @@ def login():
                     session['name'] = username
                     session['user_id'] = user.id
                     return redirect('/')
+                else:
+                    return render_template('backend/auth-sign-in.html')
         else:
             return render_template('backend/auth-sign-in.html')
 
