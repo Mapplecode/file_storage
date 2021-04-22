@@ -23,6 +23,10 @@ var file = $(this).val();
 
 
 $('.inner_category').click(function(){
+if ($(this).val() == 'all'){
+$('.all_files').css('display','block')
+}
+else{
 var classes = $('.all_files');
 for(var i = 0; i < classes.length; i++)
 {
@@ -37,6 +41,7 @@ for(var i = 0; i < classes.length; i++)
     $('#'+classes[i].id).css('display','block')
     document.getElementById(classes[i].id).style.display = "block";
     }
+}
 }
 }
 )
