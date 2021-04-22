@@ -35,8 +35,7 @@ for(var i = 0; i < classes.length; i++)
     }
     if(n == true){
     console.log(classes[i].id)
-    $('#'+String(classes[i].id)).show()
-    $('#'+String(classes[i].id)).css('display','block')
+    $('#'+classes[i].id).css('display','block')
     }
 }
 }
