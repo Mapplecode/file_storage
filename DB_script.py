@@ -1,12 +1,13 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import sessionmaker, scoped_session
+from dataBase_info import db_info
 class DB(object):
     def __init__(self):
-        dbhost = 'localhost'
-        dbuser = 'root'
-        dbpass = 'Password@1'
-        dbname = 'file_storage'
+        dbhost = db_info['MYSQL_HOST']
+        dbuser = db_info['MYSQL_USER']
+        dbpass = db_info['MYSQL_PASSWORD']
+        dbname = db_info['MYSQL_DB']
 
         url = 'mysql+pymysql://{}:{}@{}/{}?charset=utf8'.format(
             dbuser, dbpass, dbhost, dbname)
