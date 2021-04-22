@@ -34,8 +34,9 @@ for(var i = 0; i < classes.length; i++)
     }
     if(n == true){
     console.log(classes[i].id)
-    $('#'+classes[i].id).css('display','block')
-    document.getElementById(classes[i].id).style.display = "block";
+    var show_it = classes[i].id
+    $('#'+show_it).css('display','block')
+    document.getElementById(classes[i].id.style.display = "block";
     }
 }
 }
