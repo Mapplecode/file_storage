@@ -30,12 +30,12 @@ for(var i = 0; i < classes.length; i++)
    var inner_class = in_element
     var n = inner_class['value'].includes($(this).val())
     if(n == false){
-    console.log(classes[i].id)
     $('#'+classes[i].id).css('display','none')
     }
     if(n == true){
     console.log(classes[i].id)
     $('#'+classes[i].id).css('display','block')
+    document.getElementById(classes[i].id).style.display = "block";
     }
 }
 }
