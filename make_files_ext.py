@@ -5,7 +5,7 @@ def add_a_tag(link,name,cat,count):
     str_is=''
     if filetype.is_image(link):
         str_is ='''
-        <div id = "'''+count +'''" class="col-lg-3 col-md-6 col-sm-6 all_files '''+str(cat).lower()+''''">
+        <div id = "'''+count +'''" class="col-lg-3 col-md-6 col-sm-6 all_files '''+str(cat).lower()+'''">
       
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body image-thumb">
@@ -22,7 +22,7 @@ def add_a_tag(link,name,cat,count):
     if filetype.is_archive(link):
         str_is = '''
 
-        <div id = "'''+count +'''" class="col-lg-3 col-md-6 col-sm-6 all_files '''+str(cat).lower()+''''">
+        <div id = "'''+count +'''" class="col-lg-3 col-md-6 col-sm-6 all_files '''+str(cat).lower()+'''">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-body image-thumb">
                                 <div class="mb-4 text-center p-3 rounded iq-thumb">
