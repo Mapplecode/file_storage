@@ -19,7 +19,7 @@ SESSION_TYPE = 'redis'
 @app.route('/')
 def index():
     if session.get('username'):
-        return render_template('index.html')
+        return render_template('/categories/dashboard.html')
     else:
         return redirect('/login')
 
@@ -53,83 +53,29 @@ def make_directories(cat_files):
         os.makedirs(cat_files+'/'+'fleet')
     except:
         pass
-@app.route('/departments_cat')
-def departments_cat():
-    cat_files = 'static/user_files/'+session.get('username')+'/departments_cat'
-    image_list = []
-    image_dict = {}
+
+@app.route('/index',methods=['POST','GET'])
+def index2():
+    param = ''
+    cat = ''
     try:
-        make_directories(cat_files)
+        if request.method == 'GET':
+            param = request.args
+        if request.method == 'POST':
+            param = request.form
+        cat = param.get('cat')
+        if cat == None or cat == '':
+            cat = 'departments'
     except:
         pass
-    user_folder = os.listdir(cat_files)
-    count = 0
-    for u_folders in user_folder:
-        cat_folder = os.listdir(cat_files+'/'+u_folders)
-        for src in cat_folder:
-            final_path =  cat_files+'/'+u_folders+'/'+src
-            image_list.append(add_a_tag(final_path,final_path.split('/')[-1],u_folders,'dp'+str(count)))
-            count = count+1
-    return render_template('categories/department_cat.html',image_list=image_list,cat_name='departments_cat')
+    print(cat)
+    file_list2 = make_files2(cat)
+    page_name = (cat).replace('_',' ')
+    page_name = page_name.replace('cat','')
+    session['catgory_page'] = page_name.capitalize()
+    print(file_list2)
+    return render_template('categories/dashboard.html',file_list=file_list2)
 
-@app.route('/user_manual_cat')
-def user_manual_cat():
-    cat_files = 'static/user_files/' + session.get('username') + '/user_manual_cat'
-    image_list = []
-    image_dict = {}
-    try:
-        make_directories(cat_files)
-    except:
-        pass
-    user_folder = os.listdir(cat_files)
-    count = 0
-    for u_folders in user_folder:
-        cat_folder = os.listdir(cat_files + '/' + u_folders)
-        for src in cat_folder:
-            final_path = cat_files + '/' + u_folders + '/' + src
-            image_list.append(add_a_tag(final_path, final_path.split('/')[-1], u_folders, 'um'+str(count)))
-            count = count + 1
-    return render_template('categories/user_manual_cat.html',image_list=image_list,cat_name='user_manual_cat')
-
-
-@app.route('/tribal_knowledge_cat')
-def tribal_knowledge_cat():
-    cat_files = 'static/user_files/' + session.get('username') + '/tribal_knowledge_cat'
-    image_list = []
-    image_dict = {}
-    try:
-        make_directories(cat_files)
-    except:
-        pass
-    user_folder = os.listdir(cat_files)
-    count = 0
-    for u_folders in user_folder:
-        cat_folder = os.listdir(cat_files + '/' + u_folders)
-        for src in cat_folder:
-            final_path = cat_files + '/' + u_folders + '/' + src
-            image_list.append(add_a_tag(final_path, final_path.split('/')[-1], u_folders, 'tk'+str(count)))
-            count = count + 1
-    return render_template('categories/tribal_knowledge_cat.html',image_list=image_list,cat_name='tribal_knowledge_cat')
-
-
-@app.route('/qr_code_cat')
-def qr_code_cat():
-    cat_files = 'static/user_files/' + session.get('username') + '/qr_code_cat'
-    image_list = []
-    image_dict = {}
-    try:
-        make_directories(cat_files)
-    except:
-        pass
-    user_folder = os.listdir(cat_files)
-    count = 0
-    for u_folders in user_folder:
-        cat_folder = os.listdir(cat_files + '/' + u_folders)
-        for src in cat_folder:
-            final_path = cat_files + '/' + u_folders + '/' + src
-            image_list.append(add_a_tag(final_path, final_path.split('/')[-1], u_folders, 'qr'+str(count)))
-            count = count + 1
-    return render_template('categories/qr_code_cat.html',image_list=image_list,cat_name='qr_code_cat')
 
 
 @app.route('/login',methods=['POST','GET'])
@@ -231,3 +177,87 @@ def delete_file():
     except:
         return {'success': False}
 
+
+def make_files(cat):
+    cat_files = 'static/user_files/' + session.get('username') + '/'+cat
+    image_list = []
+    image_dict = {}
+    new_file_list = []
+    try:
+        make_directories(cat_files)
+    except:
+        pass
+    user_folder = os.listdir(cat_files)
+    count = 0
+    for u_folders in user_folder:
+        cat_folder = os.listdir(cat_files + '/' + u_folders)
+        for src in cat_folder:
+            final_path = cat_files + '/' + u_folders + '/' + src
+            image_list.append(add_a_tag(final_path, final_path.split('/')[-1], u_folders, 'tk'+str(count)))
+            new_file_list.append(add_table(str(count),final_path,src,cat_folder,u_folders))
+            count = count + 1
+    return image_list,new_file_list
+
+def make_files2(cat):
+    cat_files = 'static/user_files/' + session.get('username') + '/'+cat
+    image_list = []
+    image_dict = {}
+    new_file_list = []
+    try:
+        make_directories(cat_files)
+    except:
+        pass
+    user_folder = os.listdir(cat_files)
+    count = 1
+    for u_folders in user_folder:
+        cat_folder = os.listdir(cat_files + '/' + u_folders)
+        for src in cat_folder:
+            final_path = cat_files + '/' + u_folders + '/' + src
+            new_file_list.append(add_table(str(count),final_path,src,cat_folder,u_folders))
+            count = count + 1
+    return new_file_list
+
+
+def add_table(count,final_path,file_name,u_folders,cat_folder):
+    import datetime
+    date = datetime.datetime.today()
+    tr_str=""""
+    <tr class='{} cat_tr'>
+    <td>{}</td>  <td> <a href={} class='text_link' target="_blank"> {} </a> </td>  <td>{}</td>  <td>{}</td>
+    </tr>""".format(cat_folder,count,final_path,file_name,cat_folder,date)
+    return tr_str
+
+@app.route('/fileUploader',methods=['GET','POST'])
+def file_uploader():
+    param = ''
+    main_dep = 'no_category'
+    sec_dep = ''
+    tag = 'no_tag'
+    print('++++++ +++++++ +++++++')
+    try:
+        try:
+            if request.method == 'GET':
+                param = request.args
+            if request.method == 'POST':
+                param = request.form
+            main_dep = param.get('main_dep')
+            sec_dep = param.get('sec_dep')
+            print(main_dep,sec_dep)
+        except:
+            pass
+        print(main_dep)
+        if 'file' not in request.files:
+            print('No file')
+        f = request.files['file']
+        print(f)
+        dir_ = 'static/user_files/'+session.get('username')+'/'+main_dep+'/'+sec_dep
+        try:
+            os.makedirs(dir_)
+        except:
+            pass
+        f.save(dir_+'/'+f.filename)
+        if main_dep == 'no_category':
+            return redirect('/')
+        return redirect('/')
+    except:
+        return redirect('/')

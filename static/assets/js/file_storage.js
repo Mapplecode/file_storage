@@ -45,3 +45,37 @@ for(var i = 0; i < classes.length; i++)
 }
 }
 )
+
+
+function upload_files(){
+console.log('here')
+    var form_data = new FormData();
+    form_data.append('file', $('#up_files').prop('files')[0]);
+    form_data.append('main_dep', $('#main_dep').val());
+    form_data.append('sec_dep', $('#sec_dep').val());
+console.log(form_data)
+    $(function() {
+    $.ajax({
+        type: 'POST',
+        url:  '/fileUploader',
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data) {
+            console.log('Success!');
+            $('#close_model_box').click()
+        },
+    });
+    });
+}
+function cat_selected(text){
+
+
+if (text != 'all'){
+$('.cat_tr').hide()
+$('.'+text.toLowerCase()).show()
+}else{
+$('.cat_tr').show()
+}
+}
