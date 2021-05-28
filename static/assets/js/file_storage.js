@@ -79,3 +79,27 @@ $('.'+text.toLowerCase()).show()
 $('.cat_tr').show()
 }
 }
+
+function create_folder(){
+    var form_data = new FormData();
+    form_data.append('folder_name', $('#folder_name').val());
+    form_data.append('main_dep', $('#main_dep_f').val());
+    form_data.append('sec_dep', $('#sec_dep_f').val());
+    console.log(form_data)
+    $(function() {
+    $.ajax({
+        type: 'POST',
+        url:  '/create_folder',
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data) {
+            console.log('Success!');
+            $('#close_create_folder_box').click()
+        },
+    });
+    });
+
+
+}

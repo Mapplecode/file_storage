@@ -57,7 +57,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
 <!--            <a class="navbar-brand" href="/"><img height="50px" class="rounded mx-auto d-block" src="./static/logo.png" alt="logo">-->
-            </a>
+<!--            </a>-->
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#!"><i class="fa fa-bars"></i></button>
             <!-- Navbar Search-->
             <!-- <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"> -->
@@ -133,20 +133,24 @@
                                         Folders
                                     </div>
                                     <div class="card-body">
-                                        <h3><a href="#" class="badge badge-light cat_a_tag" id="all_a" onclick="cat_selected('all')">Show All</a></h3>
-                                        <h3><a href="#" class="badge badge-info cat_a_tag" id="Collections_a" onclick="cat_selected('Collections')">Collections</a></h3>
-                                        <h3><a href="#" class="badge badge-primary cat_a_tag" id="Water_a" onclick="cat_selected('Water')">Water</a></h3>
-                                        <h3><a href="#" class="badge badge-danger cat_a_tag" id="Police_a" onclick="cat_selected('Police')">Police</a></h3>
-                                        <h3><a href="#" class="badge badge-success cat_a_tag" id="Streets_a" onclick="cat_selected('Streets')">Streets</a></h3>
-                                        <h3><a href="#" class="badge badge-warning cat_a_tag" id="Refuse_a" onclick="cat_selected('Refuse')">Refuse</a></h3>
-                                        <h3><a href="#" class="badge badge-secondary cat_a_tag" id="Fleet_a" onclick="cat_selected('Fleet')">Fleet</a></h3>
+                                        <h3><a href="#" class="badge badge-light  col-sm-12 cat_a_tag" id="all_a" onclick="cat_selected('all')">Show All</a></h3>
+                                        <h3><a href="#" class="badge badge-primary col-sm-12 cat_a_tag" id="Software_a" onclick="cat_selected('Software')">Software</a></h3>
+                                        <h3><a href="#" class="badge badge-primary col-sm-12 cat_a_tag" id="Ancillary_Equipment_a" onclick="cat_selected('Ancillary_Equipment')">Ancillary<br> Equipment</a></h3>
+                                        <h3><a href="#" class="badge badge-primary col-sm-12 cat_a_tag" id="Nozzles_a" onclick="cat_selected('Nozzles')">Nozzles</a></h3>
+                                        <h3><a href="#" class="badge badge-primary col-sm-12 cat_a_tag" id="Plant_a" onclick="cat_selected('Plant')">Plant</a></h3>
+                                        <h3><a href="#" class="badge badge-primary col-sm-12 cat_a_tag" id="M&P_a" onclick="cat_selected('M_and_P')">M&P</a></h3>
+                                        <h3><a href="#" class="badge badge-primary col-sm-12 cat_a_tag" id="Fleet_a" onclick="cat_selected('Fleet')">Fleet</a></h3>
                                     </div>
                                </div>
                             </div>
                             <div class="col-md-10">
+                                <button type="button" class="btn btn-default btn-sm float-right" data-toggle="modal" data-target="#create_folder_model">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Create Folder
+                                  </button>&nbsp;
+
                                 <button type="button" class="btn btn-default btn-sm float-right" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> New
-                                  </button>
+                                    <i class="fa fa-plus" aria-hidden="true"></i> New &nbsp;
+                                  </button>&nbsp;
                                   <!-- Modal -->
                                   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -168,12 +172,12 @@
                                                 <option value="tribal_knowledge">tribal_knowledge</option>
                                                 </select>
                                                 <select id="sec_dep">
-                                                    <option value="collections">collections</option>
+                                                    <option value="software">software</option>
+                                                    <option value="ancillary_equipment">ancillary_equipment</option>
+                                                    <option value="nozzles">nozzles</option>
+                                                    <option value="plant">plant</option>
+                                                    <option value="m_and_p">m&p</option>
                                                     <option value="fleet">fleet</option>
-                                                    <option value="police">police</option>
-                                                    <option value="refuse">refuse</option>
-                                                    <option value="streets">streets</option>
-                                                    <option value="water">water</option>
                                                 </select>
                                             </p>
                                         </dl>
@@ -181,6 +185,46 @@
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary" id='close_model_box' data-dismiss="modal">Close</button>
                                           <button type="button" class="btn btn-primary" onclick="upload_files()" id="">Save</button>
+
+                                        </div>
+                                    </form>
+                                      </div>
+                                    </div>
+                                  </div>
+<div class="modal fade" id="create_folder_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Create Folder</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <form method="get" action="" >
+                                        <div class="modal-body">
+                                        <dl>
+
+                                            <p>Enter Folder Name :
+                                                <input class=" " type="text" id="folder_name" name="folder_name"  autocomplete="off" required>
+                                            </p>
+                                            <p>
+                                                <select id="main_dep_f"><option value="departments">departments</option><option value="user_manual">user_manual</option><option value="qr_code">qr_code</option>
+                                                <option value="tribal_knowledge">tribal_knowledge</option>
+                                                </select>
+                                                <select id="sec_dep_f">
+                                                    <option value="software">software</option>
+                                                    <option value="ancillary_equipment">ancillary_equipment</option>
+                                                    <option value="nozzles">nozzles</option>
+                                                    <option value="plant">plant</option>
+                                                    <option value="m_and_p">m&p</option>
+                                                    <option value="fleet">fleet</option>
+                                                </select>
+                                            </p>
+                                        </dl>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" id='close_create_folder_box' data-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-primary" onclick="create_folder()" id="">Save</button>
 
                                         </div>
                                     </form>

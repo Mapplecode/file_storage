@@ -30,23 +30,23 @@ def make_directories(cat_files):
     except:
         pass
     try:
-        os.makedirs(cat_files+'/'+'collections')
+        os.makedirs(cat_files+'/'+'software')
     except:
         pass
     try:
-        os.makedirs(cat_files+'/'+'water')
+        os.makedirs(cat_files+'/'+'ancillary_equipment')
     except:
         pass
     try:
-        os.makedirs(cat_files+'/'+'police')
+        os.makedirs(cat_files+'/'+'nozzles')
     except:
         pass
     try:
-        os.makedirs(cat_files+'/'+'streets')
+        os.makedirs(cat_files+'/'+'plant')
     except:
         pass
     try:
-        os.makedirs(cat_files+'/'+'refuse')
+        os.makedirs(cat_files+'/'+'m_and_p')
     except:
         pass
     try:
@@ -261,3 +261,30 @@ def file_uploader():
         return redirect('/')
     except:
         return redirect('/')
+
+@app.route('/create_folder',methods=['GET','POST'])
+def create_folder_api():
+    param = ''
+    main_dep = 'no_category'
+    sec_dep = ''
+    tag = 'no_tag'
+    folder_name = 'new_folder'
+    try:
+        if request.method == 'GET':
+            param = request.args
+        if request.method == 'POST':
+            param = request.form
+        main_dep = param.get('main_dep')
+        sec_dep = param.get('sec_dep')
+        folder_name = param.get('folder_name')
+        print(main_dep,sec_dep)
+    except:
+        pass
+
+    dir_ = 'static/user_files/' + session.get('username') + '/' + main_dep + '/' + sec_dep+'/'+folder_name
+    if main_dep !="" and sec_dep != '':
+        try:
+            os.makedirs(dir_)
+        except:
+            pass
+        return {'success':True}
