@@ -5,6 +5,7 @@ from DB_script import DB as database
 import os
 from dataBase_info import db_info
 import filetype
+import datetime
 from make_files_ext import add_a_tag
 app = Flask(__name__)
 app.config['SECRET_KEY'] = db_info['SECRET_KEY']
@@ -68,12 +69,12 @@ def index2():
             cat = 'departments'
     except:
         pass
-    print(cat)
+    # print(cat)
     file_list2 = make_files2(cat)
     page_name = (cat).replace('_',' ')
     page_name = page_name.replace('cat','')
     session['catgory_page'] = page_name.capitalize()
-    print(file_list2)
+    # print(file_list2)
     return render_template('categories/dashboard.html',file_list=file_list2)
 
 
@@ -147,7 +148,7 @@ def file_upload():
             tag = param.get('tag')
         except:
             pass
-        print(category)
+        # print(category)
         if 'file' not in request.files:
             print('No file')
         f = request.files['file']
@@ -171,7 +172,7 @@ def delete_file():
         if request.method == 'POST':
             param = request.form
         file= param.get('file')
-        print(file)
+        # print(file)
         os.remove(os.getcwd()+'/'+file)
         return {'success': True}
     except:
@@ -193,6 +194,7 @@ def make_files(cat):
         cat_folder = os.listdir(cat_files + '/' + u_folders)
         for src in cat_folder:
             final_path = cat_files + '/' + u_folders + '/' + src
+            # print(type(src))
             image_list.append(add_a_tag(final_path, final_path.split('/')[-1], u_folders, 'tk'+str(count)))
             new_file_list.append(add_table(str(count),final_path,src,cat_folder,u_folders))
             count = count + 1
@@ -213,18 +215,30 @@ def make_files2(cat):
         cat_folder = os.listdir(cat_files + '/' + u_folders)
         for src in cat_folder:
             final_path = cat_files + '/' + u_folders + '/' + src
-            new_file_list.append(add_table(str(count),final_path,src,cat_folder,u_folders))
+            try:
+                listing_happened = os.listdir(cat_files + '/' + u_folders + '/' + src)
+                new_file_list.append(add_table(str(count), final_path, src, cat_folder, u_folders,is_folder=True))
+            except:
+                new_file_list.append(add_table(str(count),final_path,src,cat_folder,u_folders))
             count = count + 1
     return new_file_list
 
 
-def add_table(count,final_path,file_name,u_folders,cat_folder):
-    import datetime
+def add_table(count,final_path,file_name,u_folders,cat_folder,is_folder=False):
+
     date = datetime.datetime.today()
-    tr_str=""""
-    <tr class='{} cat_tr'>
-    <td>{}</td>  <td> <a href={} class='text_link' target="_blank"> {} </a> </td>  <td>{}</td>  <td>{}</td>
-    </tr>""".format(cat_folder,count,final_path,file_name,cat_folder,date)
+    if is_folder == False:
+        tr_str=""""
+        <tr class='{} cat_tr'>
+        <td>{}</td>  <td> <a href={} class='text_link' target="_blank"> {} </a> </td>  <td>{}</td>  <td>{}</td>
+        </tr>""".format(cat_folder,count,final_path,file_name,cat_folder,date)
+    else:
+        folder_src='/is_folder?key='+final_path
+        tr_str = """"
+                <tr class='{} cat_tr'>
+                <td>{}</td>  <td> <a href={} class='text_link' target="_blank"> {} </a> </td>  <td>{}</td>  <td>{}</td>
+                </tr>""".format(cat_folder, count, folder_src, file_name, cat_folder, date)
+
     return tr_str
 
 @app.route('/fileUploader',methods=['GET','POST'])
@@ -233,7 +247,7 @@ def file_uploader():
     main_dep = 'no_category'
     sec_dep = ''
     tag = 'no_tag'
-    print('++++++ +++++++ +++++++')
+    # print('++++++ +++++++ +++++++')
     try:
         try:
             if request.method == 'GET':
@@ -242,14 +256,14 @@ def file_uploader():
                 param = request.form
             main_dep = param.get('main_dep')
             sec_dep = param.get('sec_dep')
-            print(main_dep,sec_dep)
+            # print(main_dep,sec_dep)
         except:
             pass
-        print(main_dep)
+        # print(main_dep)
         if 'file' not in request.files:
             print('No file')
         f = request.files['file']
-        print(f)
+        # print(f)
         dir_ = 'static/user_files/'+session.get('username')+'/'+main_dep+'/'+sec_dep
         try:
             os.makedirs(dir_)
@@ -277,7 +291,7 @@ def create_folder_api():
         main_dep = param.get('main_dep')
         sec_dep = param.get('sec_dep')
         folder_name = param.get('folder_name')
-        print(main_dep,sec_dep)
+        # print(main_dep,sec_dep)
     except:
         pass
 
@@ -288,3 +302,30 @@ def create_folder_api():
         except:
             pass
         return {'success':True}
+
+@app.route('/is_folder',methods=['GET','POST'])
+def is_folder():
+    param={}
+    files = []
+    try:
+        if request.method == 'GET':
+            param = request.args
+        if request.method == 'POST':
+            param = request.form
+        key = param.get('key')
+        files = os.listdir(key)
+        count = 1
+        for fl in files:
+            fl_name = fl
+            fl = key+'/'+fl
+            date = datetime.datetime.today()
+            tr_str = """"
+            <tr  class='{} cat_tr'>
+            <td>{}</td>  <td> <a href={} class='text_link' target="_blank"> {} </a> </td>  <td>{}</td>  <td>{}</td>
+            </tr>""".format('', count, fl, fl, fl_name, date)
+            count = count+1
+            file_list = tr_str
+
+    except:
+        pass
+    return render_template('categories/is_folder.html',file_list=file_list)
