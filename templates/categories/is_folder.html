@@ -87,7 +87,11 @@
                 <nav class="sb-sidenav accordion sb-sidenav-" id="sidebar">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading"><a href="/index?cat=department"><i class="fa fa-user" style="font-size:24px"></i> <strong>&nbsp &nbsp{{session['name']}}</strong></a></div>
+                            <div class="sb-sidenav-menu-heading">
+                                <a href="/">
+<!--                                    <i class="fa fa-user" style="font-size:24px"></i> -->
+                                    <strong>City of Santa Cruz</strong></a></div>
+
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fa fa-file"></i></div>
                                 Files
@@ -239,14 +243,17 @@
                                       <tr>
                                         <th scope="col">Sr No.</th>
                                         <th scope="col">File Name</th>
-                                         <th scope="col">Category </th>
+                                         <th scope="col">Folder </th>
                                         <th scope="col">Created Date</th>
                                       </tr>
                                       
                                     </thead>
                                     <tbody id="table_body">
                                       {% for data in file_list  %}
-                                    {{data|safe}}
+
+             <tr  class=' cat_tr'>
+            <td>{{data['count']}}</td>  <td> <a href={{data['src']}} class='text_link' target="_blank"> {{data['name']}} </a> </td>  <td>{{data['folder']}}</td>  <td>{{data['date']}}</td>
+            </tr>
                                       {% endfor %}
                                     </tbody>
                                   </table>

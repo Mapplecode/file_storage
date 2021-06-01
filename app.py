@@ -233,11 +233,11 @@ def add_table(count,final_path,file_name,u_folders,cat_folder,is_folder=False):
         <td>{}</td>  <td> <a href={} class='text_link' target="_blank"> {} </a> </td>  <td>{}</td>  <td>{}</td>
         </tr>""".format(cat_folder,count,final_path,file_name,cat_folder,date)
     else:
-        folder_src='/is_folder?key='+final_path
+        folder_src='/is_folder?key='+final_path+'&folder='+file_name
         tr_str = """"
                 <tr class='{} cat_tr'>
-                <td>{}</td>  <td> <a href={} class='text_link' target="_blank"> {} </a> </td>  <td>{}</td>  <td>{}</td>
-                </tr>""".format(cat_folder, count, folder_src, file_name, cat_folder, date)
+                <td>{}</td>  <td> <a href={} class='text_link' target="_blank"><b> {} </b></a> </td>  <td>{}</td>  <td>{}</td>
+                </tr>""".format(cat_folder, count, folder_src, file_name+'   '+'(Folder)', cat_folder, date)
 
     return tr_str
 
@@ -307,24 +307,24 @@ def create_folder_api():
 def is_folder():
     param={}
     files = []
+    file_list = []
     try:
         if request.method == 'GET':
             param = request.args
         if request.method == 'POST':
             param = request.form
         key = param.get('key')
+        folder = param.get('folder')
         files = os.listdir(key)
         count = 1
+        dict_1 = dict()
         for fl in files:
             fl_name = fl
             fl = key+'/'+fl
             date = datetime.datetime.today()
-            tr_str = """"
-            <tr  class='{} cat_tr'>
-            <td>{}</td>  <td> <a href={} class='text_link' target="_blank"> {} </a> </td>  <td>{}</td>  <td>{}</td>
-            </tr>""".format('', count, fl, fl, fl_name, date)
-            count = count+1
-            file_list = tr_str
+            count = count + 1
+            dict_1 ={'count':count,'src':fl,'name':fl_name,'date':date,'folder':folder}
+            file_list.append(dict_1)
 
     except:
         pass
