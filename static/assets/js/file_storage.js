@@ -69,6 +69,30 @@ console.log(form_data)
     });
     });
 }
+function upload_files_into_folder(){
+console.log('here')
+    var form_data = new FormData();
+    form_data.append('file', $('#up_files_folder').prop('files')[0]);
+    form_data.append('folder_name', $('#folder_name').val());
+console.log(form_data)
+    $(function() {
+    $.ajax({
+        type: 'POST',
+        url:  '/fileUploader_to_folder',
+        data: form_data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data) {
+            console.log('Success!');
+            $('#close_model_box').click()
+            location.reload();
+        },
+    });
+    });
+
+}
+
 function cat_selected(text){
 
 

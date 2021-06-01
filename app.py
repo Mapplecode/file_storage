@@ -276,6 +276,40 @@ def file_uploader():
     except:
         return redirect('/')
 
+
+@app.route('/fileUploader_to_folder',methods=['GET','POST'])
+def fileUploader_to_folder():
+    param = ''
+    main_dep = 'no_category'
+    sec_dep = ''
+    tag = 'no_tag'
+    # print('++++++ +++++++ +++++++')
+    try:
+        try:
+            if request.method == 'GET':
+                param = request.args
+            if request.method == 'POST':
+                param = request.form
+            folder_name = param.get('folder_name')
+            # print(main_dep,sec_dep)
+        except:
+            pass
+        # print(main_dep)
+        if 'file' not in request.files:
+            print('No file')
+        f = request.files['file']
+        # print(f)
+        dir_ = folder_name
+        try:
+            os.makedirs(dir_)
+        except:
+            pass
+        f.save(dir_+'/'+f.filename)
+        return redirect('/')
+    except:
+        return redirect('/')
+
+
 @app.route('/create_folder',methods=['GET','POST'])
 def create_folder_api():
     param = ''
@@ -308,6 +342,7 @@ def is_folder():
     param={}
     files = []
     file_list = []
+    key = ''
     try:
         if request.method == 'GET':
             param = request.args
@@ -325,7 +360,6 @@ def is_folder():
             count = count + 1
             dict_1 ={'count':count,'src':fl,'name':fl_name,'date':date,'folder':folder}
             file_list.append(dict_1)
-
     except:
         pass
-    return render_template('categories/is_folder.html',file_list=file_list)
+    return render_template('categories/is_folder.html',file_list=file_list,folder=key)
