@@ -225,7 +225,7 @@ def make_files2(cat):
 
 
 def add_table(count,final_path,file_name,u_folders,cat_folder,is_folder=False):
-    file_name_for_a = file_name.replace(' ','%20')
+    file_name_for_a = final_path.replace(' ','%20')
     date = datetime.datetime.today()
     if is_folder == False:
         tr_str=""""
@@ -233,11 +233,12 @@ def add_table(count,final_path,file_name,u_folders,cat_folder,is_folder=False):
         <td>{}</td>  <td> <a href={} class='text_link' target="_blank"> {} </a> </td>  <td>{}</td>  <td>{}</td>
         </tr>""".format(cat_folder,count,file_name_for_a,file_name,cat_folder,date)
     else:
-        folder_src='/is_folder?key='+final_path+'&folder='+file_name
+        folder_src='/is_folder?key='+file_name_for_a+'&folder='+file_name
+        print(folder_src)
         tr_str = """"
                 <tr class='{} cat_tr'>
                 <td>{}</td>  <td> <a href={} class='text_link' target="_blank"><b> {} </b></a> </td>  <td>{}</td>  <td>{}</td>
-                </tr>""".format(cat_folder, count, folder_src, file_name_for_a+'   '+'(Folder)', cat_folder, date)
+                </tr>""".format(cat_folder, count, folder_src, file_name+'   '+'(Folder)', cat_folder, date)
 
     return tr_str
 
@@ -355,10 +356,10 @@ def is_folder():
         dict_1 = dict()
         for fl in files:
             fl_name = fl
-            fl = key+'/'+fl
+            src = key+'/'+fl.replace(' ','%20')
             date = datetime.datetime.today()
             count = count + 1
-            dict_1 ={'count':count,'src':fl,'name':fl_name,'date':date,'folder':folder}
+            dict_1 ={'count':count,'src':src,'name':fl_name,'date':date,'folder':folder}
             file_list.append(dict_1)
     except:
         pass
