@@ -225,7 +225,7 @@ def make_files2(cat):
 
 
 def add_table(count,final_path,file_name,u_folders,cat_folder,is_folder=False):
-    file_name.replace(' ','%20')
+    file_name = file_name.replace(' ','%20')
     date = datetime.datetime.today()
     if is_folder == False:
         tr_str=""""
