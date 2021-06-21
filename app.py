@@ -163,17 +163,15 @@ def file_upload():
         return redirect('/'+category)
     except:
         return redirect('/' + category)
-@app.route('/delete_file_strd',methods=['GET','POST'])
+@app.route('/delete_files',methods=['GET','POST'])
 def delete_file():
     try:
         param = ''
-        if request.method == 'GET':
-            param = request.args
-        if request.method == 'POST':
-            param = request.form
-        file= param.get('file')
-        # print(file)
-        os.remove(os.getcwd()+'/'+file)
+        print(request.form)
+        for key, value in request.form.items():
+            print(key,value)
+            value = str(value).replace('%20',' ')
+            os.remove(os.getcwd()+'/'+value)
         return {'success': True}
     except:
         return {'success': False}
@@ -215,23 +213,29 @@ def make_files2(cat):
         cat_folder = os.listdir(cat_files + '/' + u_folders)
         for src in cat_folder:
             final_path = cat_files + '/' + u_folders + '/' + src
+            main_cat = cat
             try:
                 listing_happened = os.listdir(cat_files + '/' + u_folders + '/' + src)
-                new_file_list.append(add_table(str(count), final_path, src, cat_folder, u_folders,is_folder=True))
+                new_file_list.append(add_table(str(count), final_path, src, cat_folder,main_cat, u_folders,is_folder=True))
             except:
-                new_file_list.append(add_table(str(count),final_path,src,cat_folder,u_folders))
+                new_file_list.append(add_table(str(count),final_path,src,cat_folder,main_cat,u_folders))
             count = count + 1
     return new_file_list
 
 
-def add_table(count,final_path,file_name,u_folders,cat_folder,is_folder=False):
+def add_table(count,final_path,file_name,u_folders,cat_folder,main_cat,is_folder=False):
     file_name_for_a = final_path.replace(' ','%20')
     date = datetime.datetime.today()
     if is_folder == False:
         tr_str=""""
         <tr class='{} cat_tr'>
-        <td>{}</td>  <td> <a href={} class='text_link' target="_blank"> {} </a> </td>  <td>{}</td>  <td>{}</td>
-        </tr>""".format(cat_folder,count,file_name_for_a,file_name,cat_folder,date)
+        <td>{}</td>  
+        <td><a href={} class='text_link' target="_blank"> {} </a> 
+        </td> <td>{}</td> 
+        <td>{}</td>  
+        <td>{}</td>
+        <td><input class="form-check-input delete_list ml-3" type="checkbox" value="{}"></td>
+        </tr>""".format(cat_folder,count,file_name_for_a,file_name,cat_folder,main_cat,str(date)[0:19],file_name_for_a)
     else:
         folder_src='/is_folder?key='+file_name_for_a+'&folder='+file_name
         print(folder_src)
@@ -327,7 +331,8 @@ def create_folder_api():
         sec_dep = param.get('sec_dep')
         folder_name = param.get('folder_name')
         # print(main_dep,sec_dep)
-    except:
+    except Exception as e:
+        print(e)
         pass
 
     dir_ = 'static/user_files/' + session.get('username') + '/' + main_dep + '/' + sec_dep+'/'+folder_name
@@ -344,6 +349,7 @@ def is_folder():
     files = []
     file_list = []
     key = ''
+    rout = {}
     try:
         if request.method == 'GET':
             param = request.args
@@ -354,13 +360,18 @@ def is_folder():
         files = os.listdir(key)
         count = 1
         dict_1 = dict()
+        folder_route_list = str(key).split('/')
+        sub_cat = folder_route_list[-1]
+        cat = folder_route_list[-2]
+        rout = {'sub_cat':sub_cat,'cat':cat}
+        print(rout)
         for fl in files:
             fl_name = fl
             src = key+'/'+fl.replace(' ','%20')
             date = datetime.datetime.today()
             count = count + 1
-            dict_1 ={'count':count,'src':src,'name':fl_name,'date':date,'folder':folder}
+            dict_1 ={'count':count,'src':src,'name':fl_name,'date':str(date)[0:19],'folder':folder}
             file_list.append(dict_1)
     except:
         pass
-    return render_template('categories/is_folder.html',file_list=file_list,folder=key)
+    return render_template('categories/is_folder.html',file_list=file_list,folder=key,rout=rout)

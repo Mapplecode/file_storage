@@ -49,10 +49,13 @@ for(var i = 0; i < classes.length; i++)
 
 function upload_files(){
 console.log('here')
+console.log($('#main_dep').val())
+console.log($('#sec_dep').val())
     var form_data = new FormData();
-    form_data.append('file', $('#up_files').prop('files')[0]);
     form_data.append('main_dep', $('#main_dep').val());
     form_data.append('sec_dep', $('#sec_dep').val());
+    form_data.append('file', $('#up_files').prop('files')[0]);
+
 console.log(form_data)
     $(function() {
     $.ajax({
@@ -99,8 +102,12 @@ function cat_selected(text){
 if (text != 'all'){
 $('.cat_tr').hide()
 $('.'+text.toLowerCase()).show()
+$('#cat_show').text(" "+text)
+if (text == 'M_and_P'){$('#cat_show').text(" "+'M&P')}
+if (text == 'Ancillary_Equipment'){$('#cat_show').text(" "+'Ancillary Equipment')}
 }else{
 $('.cat_tr').show()
+$('#cat_show').text(' All Files')
 }
 }
 
@@ -127,3 +134,26 @@ function create_folder(){
 
 
 }
+
+$('#delete_list').click(function(){
+var list = $('.delete_list')
+var list_to_delete = {}
+for (var i = 0; i < list.length; i++) {
+var elem = list[i]
+if (elem.checked == true){
+list_to_delete[i] = elem.value
+}
+}
+    $.ajax({
+        type: 'POST',
+        url:  '/delete_files',
+        data: {'data':list_to_delete},
+        success: function(data) {
+            if (data.success = true){
+            console.log('Success!');
+            location.reload();
+            }
+        },
+    });
+
+})

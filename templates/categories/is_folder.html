@@ -99,7 +99,7 @@
                             </a>
                             <!-- <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion"> -->
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/index?cat=departments"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;Departments</a>
+<!--                                    <a class="nav-link" href="/index?cat=departments"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;Departments</a>-->
                                     <a class="nav-link" href="/index?cat=user_manual"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;User Manuals</a>
                                     <a class="nav-link" href="/index?cat=tribal_knowledge"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;Tribe Knowledge</a>
                                     <a class="nav-link" href="/index?cat=qr_code"><i class="fa fa-qrcode" aria-hidden="true"></i>&nbsp;QR Codes</a>
@@ -116,7 +116,7 @@
                         <!-- <h1 class="mt-4">Dashboard</h1> -->
                     {% if data != "dashboard" %}
                             <ol class="breadcrumb mb-4 mt-4">
-                                <li class="breadcrumb-item active">{{session['catgory_page']}} /<a style="color: cornflowerblue;" href="">&nbsp;{{data}}</a></li>
+                                <li class="breadcrumb-item active">{{session['catgory_page']}} / {{rout['cat']}} / {{rout['sub_cat']}}<a style="color: cornflowerblue;" href="">&nbsp;{{data}}</a></li>
                             </ol>
                             {% with messages = get_flashed_messages() %}
                             {% if messages %}
@@ -149,7 +149,7 @@
                                </div>
                             </div>
                             <div class="col-md-10">
-
+<button class="float-left btn btn-sm btn-danger" id="delete_list">Delete Selected</button>
                                 <button type="button" class="btn btn-default btn-sm float-right" data-toggle="modal" data-target="#exampleModal">
                                     <i class="fa fa-plus" aria-hidden="true"></i> New &nbsp;
                                   </button>&nbsp;
@@ -190,8 +190,11 @@
                                       <tr>
                                         <th scope="col">Sr No.</th>
                                         <th scope="col">File Name</th>
+                                            <th scope="col">Category </th>
+                                            <th scope="col">Sub - Category </th>
                                          <th scope="col">Folder </th>
                                         <th scope="col">Created Date</th>
+                                          <th>Select</th>
                                       </tr>
                                       
                                     </thead>
@@ -199,7 +202,13 @@
                                       {% for data in file_list  %}
 
              <tr  class=' cat_tr'>
-            <td>{{data['count']}}</td>  <td> <a href={{data['src']}} class='text_link' target="_blank"> {{data['name']}} </a> </td>  <td>{{data['folder']}}</td>  <td>{{data['date']}}</td>
+                 <td>{{data['count']}}</td>
+                 <td> <a href={{data['src']}} class='text_link' target="_blank"> {{data['name']}} </a>
+                 <td>{{rout['cat']}}</td>
+                 <td>{{rout['sub_cat']}}</td>
+                 </td>  <td>{{data['folder']}}</td>
+                 <td>{{data['date']}}</td>
+                 <td><input class="form-check-input delete_list ml-3" type="checkbox" value="{{data['src']}}"></td>
             </tr>
                                       {% endfor %}
                                     </tbody>
@@ -235,7 +244,7 @@
                                             <label for="exampleFormControlSelect1">Pick Type</label>
                                             <select class="form-control" name="type" id="exampleFormControlSelect1">
                                              <option>--Select--</option>  
-                                              <option value="deprt">Departments</option>
+<!--                                              <option value="deprt">Departments</option>-->
                                               <option value="userman">User Manuals</option>
                                               <option value="tribdge">Tribe Knowledge</option>
                                               <option value="qrcode">QR Codes</option>
