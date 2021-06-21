@@ -171,9 +171,13 @@ def delete_file():
         for key, value in request.form.items():
             print(key,value)
             value = str(value).replace('%20',' ')
-            os.remove(os.getcwd()+'/'+value)
+            try:
+                os.remove(os.getcwd()+'/'+value)
+            except:
+                os.rmdir(os.getcwd()+'/'+value)
         return {'success': True}
-    except:
+    except Exception as e:
+        print(e)
         return {'success': False}
 
 
@@ -241,8 +245,13 @@ def add_table(count,final_path,file_name,u_folders,cat_folder,main_cat,is_folder
         print(folder_src)
         tr_str = """"
                 <tr class='{} cat_tr'>
-                <td>{}</td>  <td> <a href={} class='text_link' target="_blank"><b> {} </b></a> </td>  <td>{}</td>  <td>{}</td>
-                </tr>""".format(cat_folder, count, folder_src, file_name+'   '+'(Folder)', cat_folder, date)
+                <td>{}</td>  
+                <td> <a href={} class='text_link' target="_blank"><b> {} </b></a> </td>  
+                <td>{}</td> 
+                <td>{}</td>  
+                <td>{}</td>
+                <td><input class="form-check-input delete_list ml-3" type="checkbox" value="{}"></td>
+                </tr>""".format(cat_folder, count, folder_src, file_name+'   '+'(Folder)', cat_folder,main_cat ,str(date)[0:19],file_name_for_a)
 
     return tr_str
 
