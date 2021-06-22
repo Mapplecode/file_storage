@@ -120,7 +120,7 @@
                         <!-- <h1 class="mt-4">Dashboard</h1> -->
                     {% if data != "dashboard" %}
                             <ol class="breadcrumb mb-4 mt-4">
-                                <li class="breadcrumb-item active">{{session['catgory_page']}} / <div id='cat_show'>All Files</div><a style="color: cornflowerblue;" href="">&nbsp;{{data}}</a></li>
+                                <li class="breadcrumb-item active"><strong>{{session['catgory_page']}}</strong> / <div id='cat_show' style="font-weight: bolder;">All Files</div><a style="color: cornflowerblue;" href="">&nbsp;{{data}}</a></li>
                             </ol>
                             {% with messages = get_flashed_messages() %}
                             {% if messages %}

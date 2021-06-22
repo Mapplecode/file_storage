@@ -116,7 +116,7 @@
                         <!-- <h1 class="mt-4">Dashboard</h1> -->
                     {% if data != "dashboard" %}
                             <ol class="breadcrumb mb-4 mt-4">
-                                <li class="breadcrumb-item active">{{session['catgory_page']}} / {{rout['cat']}} / {{rout['sub_cat']}}<a style="color: cornflowerblue;" href="">&nbsp;{{data}}</a></li>
+                                <li class="breadcrumb-item active"><strong>{{session['catgory_page']}}</strong> / <strong>{{rout['cat']}}</strong> / <strong>{{rout['sub_cat']}}</strong><a style="color: cornflowerblue;" href="">&nbsp;{{data}}</a></li>
                             </ol>
                             {% with messages = get_flashed_messages() %}
                             {% if messages %}
